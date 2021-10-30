@@ -38,8 +38,8 @@ class SqlSrvService implements IDataService
 
     public function Add($name, $defeted, $cd)
     {
-        $querry_string = "INSERT INTO [dbo].[Bosses]";
-        $querry_string .= "(name,defeated,cd)";
+        $querry_string = "INSERT INTO [dbo].[Bosses] ";
+        $querry_string .= "(name,defeated,cd) ";
         $querry_string .= "VALUES ('$name','$defeted','$cd');";
 
         echo "querry string:   " . $querry_string;
@@ -47,7 +47,17 @@ class SqlSrvService implements IDataService
         $conn->query($querry_string);
     }
 
+    public function Remove($id)
+    {
+        $querry_string = "DELETE FROM Bosses ";
+        $querry_string .= "WHERE id='$id';";
 
+        echo "querry string:   " . $querry_string;
+        $conn = $this->connection;
+        $stmt=$conn->prepare($querry_string);
+
+        $delete = $stmt->execute();
+    }
 
 }
 
