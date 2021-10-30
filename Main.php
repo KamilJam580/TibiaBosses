@@ -8,27 +8,13 @@
     echo ($boss1->defeated->format('Y-m-d H:i:s'). "</br>");
 
 
+    include_once("DataService/SqlServService.php");
+    $data_service = new SqlSrvService();
     $serverName = "DESKTOP-3L9UIL8";  
-    try  {  
-    $conn = new PDO( "sqlsrv:server=$serverName ; Database=testdb", "elo", "321");  
-    //$conn = new PDO( "sqlsrv:server=$serverName ; Database=testdb", "", "");  
-    $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );  
-    }  
-    catch(Exception $e)  {   
-    die( print_r( $e->getMessage() ) );   
-    }  
-    if( $conn === false )  {
-        die( "Brak połączenia</br>");  
-    }
-    if( $conn === true )  {
+    $data_service->Connect($serverName, "testdb", "elo" , "321");
+    $data_service->ReadAll();
+    
 
-        echo "Polonczono</br>";  
-    }
 
-$sth = $conn->query('SELECT * FROM Persons ');
-$rows = $sth->fetchAll();
-foreach($rows as $row) {
-    printf("$row[0] $row[1]</br>");
-}
 
 ?>

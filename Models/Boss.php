@@ -2,11 +2,12 @@
 
 class Boss
 {
-    public $name = "" ;
-    public $defeated = "";
+    public $id;
+    public $name;
+    public $defeated;
    
 
-    public function __construct($name)
+    public function __construct($name, $id = null, $defeated = null)
     {
         $this->name = $name;
         $this->defeated = new DateTime('2000-01-01');
