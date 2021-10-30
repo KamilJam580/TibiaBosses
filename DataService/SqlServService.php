@@ -27,13 +27,26 @@ class SqlSrvService implements IDataService
 
     public function ReadAll()
     {
+
         $conn = $this->connection;
-        $sth = $conn->query('SELECT * FROM Persons ');
+        $sth = $conn->query('SELECT * FROM Bosses ');
         $rows = $sth->fetchAll();
         foreach($rows as $row) {
-            printf("$row[0] $row[1]</br>");
+            printf("$row[id] $row[name] $row[cd] </br>");
         }
     }
+
+    public function Add($name, $defeted, $cd)
+    {
+        $querry_string = "INSERT INTO [dbo].[Bosses]";
+        $querry_string .= "(name,defeated,cd)";
+        $querry_string .= "VALUES ('$name','$defeted','$cd');";
+
+        echo "querry string:   " . $querry_string;
+        $conn = $this->connection;
+        $conn->query($querry_string);
+    }
+
 
 
 }

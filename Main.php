@@ -12,6 +12,7 @@
     $data_service = new SqlSrvService();
     $serverName = "DESKTOP-3L9UIL8";  
     $data_service->Connect($serverName, "testdb", "elo" , "321");
+    $data_service->Add('Scatlet', '12-10-25 12:32:10.1234567', 20);
     $data_service->ReadAll();
     
 
